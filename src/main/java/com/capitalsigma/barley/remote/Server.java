@@ -2,7 +2,7 @@ package com.capitalsigma.barley.remote;
 
 import android.content.Context;
 import com.capitalsigma.barley.R;
-import com.capitalsigma.barley.data.Response;
+import com.capitalsigma.barley.data.APIResponse;
 import com.capitalsigma.barley.data.Submission;
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
@@ -26,8 +26,8 @@ public class Server {
     private API api;
 
     public static interface API {
-        @GET("/api/v1/{subverse}")
-        void getSubmissions(@Path("subverse") String subverse, Callback<Response<List<Submission>>> cb);
+        @GET("/api/v1/v/{subverse}")
+        void getSubmissions(@Path("subverse") String subverse, Callback<APIResponse<List<Submission>>> cb);
     }
 
     public Server(String publicKey, String remoteUrl) {
@@ -45,18 +45,18 @@ public class Server {
 
     @GET("/api/v1/{subverse}")
     public void getSubmissions(@Path("subverse") String subverse,
-                               Callback<Response<List<Submission>>> cb) {
+                               Callback<APIResponse<List<Submission>>> cb) {
         api.getSubmissions(subverse, cb);
     }
 
-    public void getFrontPageSubverse(Callback<Response<List<Submission>>> cb) {
+    public void getFrontPageSubverse(Callback<APIResponse<List<Submission>>> cb) {
         getSubmissions(FRONT_PAGE_SUBVERSE, cb);
     }
 
-    public void getDefaultPageSubverse(Callback<Response<List<Submission>>> cb) {
+    public void getDefaultPageSubverse(Callback<APIResponse<List<Submission>>> cb) {
         getSubmissions(DEFAULT_SUBVERSE, cb);
     }
-    public void getAllPageSubverse(Callback<Response<List<Submission>>> cb) {
+    public void getAllPageSubverse(Callback<APIResponse<List<Submission>>> cb) {
         getSubmissions(ALL_SUBVERSE, cb);
     }
 

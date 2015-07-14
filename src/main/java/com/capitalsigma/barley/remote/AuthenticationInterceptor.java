@@ -2,7 +2,10 @@ package com.capitalsigma.barley.remote;
 
 import retrofit.RequestInterceptor;
 
+import java.util.ArrayList;
 import java.util.List;
+
+// http://tools.android.com/tech-docs/unit-testing-support
 
 /**
  * Created by patrick on 7/14/15.
@@ -17,6 +20,7 @@ public class AuthenticationInterceptor implements RequestInterceptor {
     private List<HeaderElement> headerElements;
 
     public AuthenticationInterceptor(String apiKey) {
+        headerElements = new ArrayList<HeaderElement>(2);
         headerElements.add(new HeaderElement(API_KEY_HEADER, apiKey));
     }
 
