@@ -10,21 +10,34 @@ apply plugin: 'android'
 apply plugin: 'idea'
 
 android {
-    compileSdkVersion 'android-22'
+    compileSdkVersion 22
     buildToolsVersion '22.0.1'
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFile getDefaultProguardFile('proguard-android.txt')
         }
     }
-
     repositories {
         jcenter()
     }
-
     dependencies {
         compile 'com.squareup.retrofit:retrofit:1.9.0'
     }
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 22
+    }
+    productFlavors {
+    }
+    dexOptions {
+        incremental true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+dependencies {
 }
